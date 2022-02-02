@@ -14,8 +14,8 @@ const App = () => {
           화이트, 우드, 라탄! 세가지 컨셉으로 꾸민 내 방
         </S.ProductTitle>
         <S.ProductTagList>
-          {TAG_ITEM.map(el => {
-            return <S.ProductTagItem>{el}</S.ProductTagItem>;
+          {TAG_ITEM.map((el, idx) => {
+            return <S.ProductTagItem key={idx}>{el}</S.ProductTagItem>;
           })}
         </S.ProductTagList>
       </S.ProductHeader>

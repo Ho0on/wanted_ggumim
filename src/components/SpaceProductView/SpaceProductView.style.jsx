@@ -9,84 +9,53 @@ export const SpaceImg = styled.img`
   width: 100%;
 `;
 
-export const TagIcon = styled.div`
-  position: absolute;
-  top: 0;
-  width: 32px;
-  height: 32px;
-  border: 1px solid red;
-  cursor: pointer;
-`;
-
-export const SearchIcon = styled.img`
-  width: 100%;
-`;
-
-export const CloseIcon = styled.img`
-  width: 100%;
-`;
-
-export const ToolTip = styled.div`
-  position: absolute;
+export const ThumbnailListWrap = styled.div`
   display: flex;
   align-items: center;
-  width: 220px;
-  height: 86px;
-  padding: 8px 0 8px 8px;
-  border-radius: 7px;
-  background-color: white;
-  box-shadow: 3px 3px 8px 0 rgb(0 0 0 / 20%);
-  z-index: 1000;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: -8px;
-    left: 34px;
-    width: 12px;
-    height: 8px;
-    background-image: url('https://cdn.ggumim.co.kr/storage/20211118152728RO3OXnhkrC.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    z-index: 1100;
-  }
+  overflow-x: auto;
 `;
 
-export const ToolTipImg = styled.div`
-  width: 70px;
-  height: 70px;
-  margin-right: 8px;
-  border-radius: 4px;
-  background-image: url('https://cdn.ggumim.co.kr/cache/furniture/300/20210705191444bnwLPTWxV0.jpg');
+export const ThumbnailList = styled.ul`
+  display: flex;
+`;
+
+export const ListItem = styled.li`
+  margin: 26px 6px;
+  padding: 2px;
+
+  ${props =>
+    props.visible &&
+    `border-radius: 18px;
+    background: linear-gradient(163.54deg, #ff659e 8.22%, #f56b30 94.1%);
+    `};
+`;
+
+export const ItemThumbnail = styled.div`
+  position: relative;
+  width: 106px;
+  height: 106px;
+  border-radius: 16px;
+  border: 1px solid ${props => (props.visible ? 'white' : '#aaafb9')};
+  background-image: url(${props => props.src});
+  background-position: center center;
   background-size: cover;
-  background-position: center;
+  background-repeat: no-repeat;
 `;
 
-export const ToolTipDesc = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-  overflow: hidden;
-`;
-
-export const DescTitle = styled.div`
-  width: 100%;
-  color: #333c45;
-`;
-
-export const DescPrice = styled.div``;
-
-export const ToolTipArrow = styled.div`
-  display: flex;
-  align-items: flex-end;
-  width: 20px;
-  height: 20px;
-  margin-top: auto;
-  margin-right: 2px;
-`;
-
-export const ToolTipArrowImg = styled.img`
-  width: 100%;
+export const DiscountLabel = styled.span`
+  display: ${props => (props.visible ? null : 'none')};
+  position: absolute;
+  top: 0;
+  right: 4px;
+  width: 24px;
+  height: 28px;
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 25px;
+  color: white;
+  padding-left: 2px;
+  background-image: url('https://cdn.ggumim.co.kr/storage/20211117191419RW6JS6bjRm.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
 `;

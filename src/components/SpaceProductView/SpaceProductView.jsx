@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import * as S from './SpaceProductView.style';
 import ProductThumbnailList from '../ProductThumbnailList';
+import ProductTagIcon from '../ProductTagIcon/ProductTagIcon';
 
 const SpaceProductView = () => {
   const [productData, setProductData] = useState();
@@ -22,26 +23,29 @@ const SpaceProductView = () => {
         {productData && (
           <>
             <S.SpaceImg src={productData.imageUrl} />
-            <S.TagIcon>
-              <S.SearchIcon src="https://cdn.ggumim.co.kr/storage/20211029145238AlZrQ41xtg.png" />
-              <S.CloseIcon src="https://cdn.ggumim.co.kr/storage/20211029145330GwwumnWNSs.png" />
-              <S.ToolTip>
-                <S.ToolTipImg />
-                <S.ToolTipDesc>
-                  <S.DescTitle>
-                    라트 세스카 암체어(Cesca Chair) 라탄체어 카페의자
-                  </S.DescTitle>
-                  <S.DescPrice>dodo</S.DescPrice>
-                </S.ToolTipDesc>
-                <S.ToolTipArrow>
-                  <S.ToolTipArrowImg src="https://cdn.ggumim.co.kr/storage/20211102181936xqHzyWAmb8.png" />
-                </S.ToolTipArrow>
-              </S.ToolTip>
-            </S.TagIcon>
+            {productData.productList.map((el, idx) => (
+              <ProductTagIcon data={el} />
+            ))}
           </>
         )}
       </S.SpaceViewContainer>
-      <ProductThumbnailList />
+      <S.ThumbnailListWrap>
+        <S.ThumbnailList>
+          {productData &&
+            productData.productList.map(el => {
+              const labelVisible = el.discountRate > 0;
+              return (
+                <S.ListItem key={el.productId} visible={labelVisible}>
+                  <S.ItemThumbnail src={el.imageUrl} visible={labelVisible}>
+                    <S.DiscountLabel visible={labelVisible}>
+                      {el.discountRate}%
+                    </S.DiscountLabel>
+                  </S.ItemThumbnail>
+                </S.ListItem>
+              );
+            })}
+        </S.ThumbnailList>
+      </S.ThumbnailListWrap>
     </>
   );
 };
