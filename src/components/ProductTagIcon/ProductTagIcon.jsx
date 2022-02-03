@@ -7,7 +7,13 @@ const SEARCH_ICON =
 const CLOSE_ICON =
   'https://cdn.ggumim.co.kr/storage/20211029145330GwwumnWNSs.png';
 
-const ProductTagIcon = ({ item, isSelected, handleSelectItem }) => {
+const ProductTagIcon = ({
+  item,
+  isSelected,
+  handleSelectItem,
+  onTop,
+  onRight,
+}) => {
   const isOutside = item.outside;
 
   const handleToggleToolTip = () => {
@@ -21,7 +27,7 @@ const ProductTagIcon = ({ item, isSelected, handleSelectItem }) => {
         onClick={handleToggleToolTip}
       />
       {isSelected && (
-        <S.ToolTip>
+        <S.ToolTip onTop={onTop} onRight={onRight}>
           <S.ToolTipImg src={item.imageUrl} />
           <S.ToolTipDesc>
             <S.DescTitle>{item.productName}</S.DescTitle>

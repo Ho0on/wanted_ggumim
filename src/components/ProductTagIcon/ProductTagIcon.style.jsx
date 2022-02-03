@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const TagIcon = styled.div`
   position: absolute;
@@ -40,6 +40,27 @@ export const ToolTip = styled.div`
     background-repeat: no-repeat;
     z-index: 1100;
   }
+
+  ${({ onTop }) =>
+    onTop &&
+    css`
+      top: unset;
+      bottom: 52px;
+      &::before {
+        top: unset;
+        bottom: -7px;
+        transform: rotate(180deg);
+      }
+    `}
+  ${({ onRight }) =>
+    onRight &&
+    css`
+      left: -172px;
+      &::before {
+        left: unset;
+        right: 34px;
+      }
+    `}
 `;
 
 export const ToolTipImg = styled.div`
