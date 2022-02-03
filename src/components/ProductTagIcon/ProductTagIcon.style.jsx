@@ -20,11 +20,11 @@ export const ToolTip = styled.div`
   display: flex;
   align-items: center;
   width: 220px;
-  font-size: 14px;
-  padding: 8px 0 8px 8px;
   margin-top: 16px;
+  padding: 8px 0 8px 8px;
   border-radius: 7px;
   background-color: white;
+  font-size: 14px;
   box-shadow: 3px 3px 8px 0 rgb(0 0 0 / 20%);
   z-index: 1000;
 
@@ -46,16 +46,19 @@ export const ToolTip = styled.div`
     css`
       top: unset;
       bottom: 52px;
+
       &::before {
         top: unset;
         bottom: -7px;
         transform: rotate(180deg);
       }
     `}
+
   ${({ onRight }) =>
     onRight &&
     css`
       left: -172px;
+
       &::before {
         left: unset;
         right: 34px;
