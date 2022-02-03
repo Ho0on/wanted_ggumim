@@ -1,45 +1,46 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import * as S from './ProductTagIcon.style';
 
-const ProductTagIcon = ({ data }) => {
-  const [isOpenToolTip, setIsOpenToolTip] = useState(false);
-  // console.log(data.productId);
+const SEARCH_ICON =
+  'https://cdn.ggumim.co.kr/storage/20211029145238AlZrQ41xtg.png';
+const CLOSE_ICON =
+  'https://cdn.ggumim.co.kr/storage/20211029145330GwwumnWNSs.png';
 
-  const isOutside = data.outside;
+const ProductTagIcon = ({ item, isSelected, handleSelectItem }) => {
+  const isOutside = item.outside;
 
-  const handleOpenToolTip = id => {
-    const isCorrect = id === data.productId;
-    console.log(isCorrect);
-    setIsOpenToolTip(prev => !prev);
+  const handleToggleToolTip = () => {
+    handleSelectItem(isSelected ? null : item.productId);
   };
+
   return (
-    <S.TagIcon pointX={data.pointX} pointY={data.pointY} key={data.productId}>
+    <S.TagIcon pointX={item.pointX} pointY={item.pointY}>
       <S.SearchIcon
-        src={
-          !isOpenToolTip
-            ? 'https://cdn.ggumim.co.kr/storage/20211029145238AlZrQ41xtg.png'
-            : 'https://cdn.ggumim.co.kr/storage/20211029145330GwwumnWNSs.png'
-        }
-        onClick={() => handleOpenToolTip(data.productId)}
+        src={!isSelected ? SEARCH_ICON : CLOSE_ICON}
+        onClick={handleToggleToolTip}
       />
-      <S.ToolTip visible={isOpenToolTip}>
-        <S.ToolTipImg src={data.imageUrl} />
-        <S.ToolTipDesc>
-          <S.DescTitle>{data.productName}</S.DescTitle>
-          <S.DescPrice>
-            {isOutside ? (
-              <S.PriceLabel>예상가</S.PriceLabel>
-            ) : (
-              <S.PriceDiscountLabel>{data.discountRate}%</S.PriceDiscountLabel>
-            )}
-            <S.Price>{data.priceDiscount.toLocaleString()}</S.Price>
-          </S.DescPrice>
-        </S.ToolTipDesc>
-        <S.ToolTipArrow>
-          <S.ToolTipArrowImg src="https://cdn.ggumim.co.kr/storage/20211102181936xqHzyWAmb8.png" />
-        </S.ToolTipArrow>
-      </S.ToolTip>
+      {isSelected && (
+        <S.ToolTip>
+          <S.ToolTipImg src={item.imageUrl} />
+          <S.ToolTipDesc>
+            <S.DescTitle>{item.productName}</S.DescTitle>
+            <S.DescPrice>
+              {isOutside ? (
+                <S.PriceLabel>예상가</S.PriceLabel>
+              ) : (
+                <S.PriceDiscountLabel>
+                  {item.discountRate}%
+                </S.PriceDiscountLabel>
+              )}
+              <S.Price>{item.priceDiscount.toLocaleString()}</S.Price>
+            </S.DescPrice>
+          </S.ToolTipDesc>
+          <S.ToolTipArrow>
+            <S.ToolTipArrowImg src="https://cdn.ggumim.co.kr/storage/20211102181936xqHzyWAmb8.png" />
+          </S.ToolTipArrow>
+        </S.ToolTip>
+      )}
     </S.TagIcon>
   );
 };

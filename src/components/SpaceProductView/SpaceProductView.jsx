@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import * as S from './SpaceProductView.style';
-import ProductThumbnailList from '../ProductThumbnailList';
+import ProductThumbnailList from '../ProductThumbnailList/ProductThumbnailList';
 import ProductTagIcon from '../ProductTagIcon/ProductTagIcon';
+import * as S from './SpaceProductView.style';
 
 const SpaceProductView = () => {
   const [productData, setProductData] = useState();
+  const [selectedItem, setSelectedItem] = useState(null);
 
   useEffect(() => {
     axios
@@ -17,35 +18,35 @@ const SpaceProductView = () => {
       });
   }, []);
 
+  const handleSelectItem = item => {
+    setSelectedItem(item);
+  };
+
   return (
     <>
       <S.SpaceViewContainer>
         {productData && (
           <>
-            <S.SpaceImg src={productData.imageUrl} />
-            {productData.productList.map((el, idx) => (
-              <ProductTagIcon data={el} />
+            <S.SpaceImg
+              src={productData.imageUrl}
+              onClick={() => setSelectedItem(null)}
+            />
+            {productData.productList.map(item => (
+              <ProductTagIcon
+                key={item.productId}
+                item={item}
+                isSelected={item.productId === selectedItem}
+                handleSelectItem={handleSelectItem}
+              />
             ))}
+            <ProductThumbnailList
+              itemList={productData.productList}
+              selectedItem={selectedItem}
+              handleSelectItem={handleSelectItem}
+            />
           </>
         )}
       </S.SpaceViewContainer>
-      <S.ThumbnailListWrap>
-        <S.ThumbnailList>
-          {productData &&
-            productData.productList.map(el => {
-              const labelVisible = el.discountRate > 0;
-              return (
-                <S.ListItem key={el.productId} visible={labelVisible}>
-                  <S.ItemThumbnail src={el.imageUrl} visible={labelVisible}>
-                    <S.DiscountLabel visible={labelVisible}>
-                      {el.discountRate}%
-                    </S.DiscountLabel>
-                  </S.ItemThumbnail>
-                </S.ListItem>
-              );
-            })}
-        </S.ThumbnailList>
-      </S.ThumbnailListWrap>
     </>
   );
 };

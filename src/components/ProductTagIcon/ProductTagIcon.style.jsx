@@ -17,7 +17,7 @@ export const ToolTip = styled.div`
   position: absolute;
   top: 28px;
   left: -24px;
-  display: ${props => (props.visible ? 'flex' : 'none')};
+  display: flex;
   align-items: center;
   width: 220px;
   font-size: 14px;
