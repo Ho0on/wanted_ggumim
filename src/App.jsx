@@ -2,8 +2,7 @@ import React from 'react';
 
 import * as S from './App.style';
 import SpaceProductView from './components/SpaceProductView/SpaceProductView';
-
-const TAG_ITEM = ['#방꾸미기', '#우드톤', '#화이트', '#라탄'];
+import { TAG_ITEM } from './constants';
 
 const App = () => {
   return (

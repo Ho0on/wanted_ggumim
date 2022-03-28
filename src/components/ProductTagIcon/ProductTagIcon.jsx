@@ -1,11 +1,7 @@
 import React from 'react';
+import { ARROW_ICON, CLOSE_ICON, SEARCH_ICON } from '../../constants';
 
 import * as S from './ProductTagIcon.style';
-
-const SEARCH_ICON =
-  'https://cdn.ggumim.co.kr/storage/20211029145238AlZrQ41xtg.png';
-const CLOSE_ICON =
-  'https://cdn.ggumim.co.kr/storage/20211029145330GwwumnWNSs.png';
 
 const ProductTagIcon = ({
   item,
@@ -43,7 +39,7 @@ const ProductTagIcon = ({
             </S.DescPrice>
           </S.ToolTipDesc>
           <S.ToolTipArrow>
-            <S.ToolTipArrowImg src="https://cdn.ggumim.co.kr/storage/20211102181936xqHzyWAmb8.png" />
+            <S.ToolTipArrowImg src={ARROW_ICON} />
           </S.ToolTipArrow>
         </S.ToolTip>
       )}

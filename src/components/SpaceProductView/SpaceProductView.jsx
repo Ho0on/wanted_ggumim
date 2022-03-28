@@ -4,24 +4,14 @@ import axios from 'axios';
 import ProductThumbnailList from '../ProductThumbnailList/ProductThumbnailList';
 import ProductTagIcon from '../ProductTagIcon/ProductTagIcon';
 import * as S from './SpaceProductView.style';
+import { API_ADDRESS } from '../../constants';
 
 const SpaceProductView = () => {
   const [productData, setProductData] = useState();
   const [selectedItem, setSelectedItem] = useState(null);
   const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
-  const imageRef = useRef();
 
-  useEffect(() => {
-    axios
-      .get('https://cdn.ggumim.co.kr/test/image_product_link.json')
-      .then(res => {
-        setProductData(res.data);
-        imageSizeLoad();
-      })
-      .catch(error => {
-        throw Error(error);
-      });
-  }, []);
+  const imageRef = useRef();
 
   const imageSizeLoad = () => {
     setImageSize({
@@ -33,6 +23,18 @@ const SpaceProductView = () => {
   const handleSelectItem = item => {
     setSelectedItem(item);
   };
+
+  useEffect(() => {
+    axios
+      .get(API_ADDRESS)
+      .then(res => {
+        setProductData(res.data);
+        imageSizeLoad();
+      })
+      .catch(error => {
+        throw Error(error);
+      });
+  }, []);
 
   return (
     <S.SpaceViewContainer>

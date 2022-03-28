@@ -17,7 +17,7 @@ const ProductThumbnailList = ({ itemList, selectedItem, handleSelectItem }) => {
     setIsDrag(false);
   };
   const onDragMove = e => {
-    if (isDrag) listWrap.current.scrollLeft = startX - e.pageX;
+    isDrag && (listWrap.current.scrollLeft = startX - e.pageX);
   };
 
   return (
