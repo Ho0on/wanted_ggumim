@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 
 import ProductThumbnailList from '../ProductThumbnailList/ProductThumbnailList';
-import ProductTagIcon from '../ProductTagIcon/ProductTagIcon';
+import ProductToolTip from '../ProductToolTip/ProductToolTip';
 import * as S from './SpaceProductView.style';
 import { API_ADDRESS } from '../../constants';
 
@@ -46,7 +46,7 @@ const SpaceProductView = () => {
             ref={imageRef}
           />
           {productData.productList.map(item => (
-            <ProductTagIcon
+            <ProductToolTip
               key={item.productId}
               item={item}
               isSelected={item.productId === selectedItem}

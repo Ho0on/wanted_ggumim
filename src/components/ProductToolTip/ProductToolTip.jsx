@@ -1,9 +1,9 @@
 import React from 'react';
 import { ARROW_ICON, CLOSE_ICON, SEARCH_ICON } from '../../constants';
 
-import * as S from './ProductTagIcon.style';
+import * as S from './ProductToolTip.style';
 
-const ProductTagIcon = ({
+const ProductToolTip = ({
   item,
   isSelected,
   handleSelectItem,
@@ -47,4 +47,4 @@ const ProductTagIcon = ({
   );
 };
 
-export default ProductTagIcon;
+export default ProductToolTip;
