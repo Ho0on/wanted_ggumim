@@ -6,20 +6,20 @@ import * as S from './ProductToolTip.style';
 const ProductToolTip = ({
   item,
   isSelected,
-  handleSelectItem,
+  setSelectedItem,
   onTop,
   onRight,
 }) => {
   const isOutside = item.outside;
 
   const handleToggleToolTip = () => {
-    handleSelectItem(isSelected ? null : item.productId);
+    setSelectedItem(isSelected ? null : item.productId);
   };
 
   return (
     <S.TagIcon pointX={item.pointX} pointY={item.pointY}>
       <S.SearchIcon
-        src={!isSelected ? SEARCH_ICON : CLOSE_ICON}
+        src={isSelected ? CLOSE_ICON : SEARCH_ICON}
         onClick={handleToggleToolTip}
       />
       {isSelected && (

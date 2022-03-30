@@ -2,9 +2,9 @@ import React from 'react';
 
 import * as S from './ThumbnailItem.style';
 
-const ThumbnailItem = ({ item, isSelected, handleSelectItem }) => {
+const ThumbnailItem = ({ item, isSelected, setSelectedItem }) => {
   const handleSelectThumbnail = () => {
-    handleSelectItem(isSelected ? null : item.productId);
+    setSelectedItem(isSelected ? null : item.productId);
   };
 
   return (

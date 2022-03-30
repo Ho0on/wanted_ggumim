@@ -20,20 +20,13 @@ const SpaceProductView = () => {
     });
   };
 
-  const handleSelectItem = item => {
-    setSelectedItem(item);
-  };
-
   useEffect(() => {
-    axios
-      .get(API_ADDRESS)
-      .then(res => {
-        setProductData(res.data);
-        imageSizeLoad();
-      })
-      .catch(error => {
-        throw Error(error);
-      });
+    const fetchData = async () => {
+      const result = await axios(API_ADDRESS);
+      setProductData(result.data);
+      imageSizeLoad();
+    };
+    fetchData();
   }, []);
 
   return (
@@ -50,7 +43,7 @@ const SpaceProductView = () => {
               key={item.productId}
               item={item}
               isSelected={item.productId === selectedItem}
-              handleSelectItem={handleSelectItem}
+              setSelectedItem={setSelectedItem}
               onTop={item.pointX * 1.6 > imageSize.height / 2}
               onRight={item.pointY * 1.65 > imageSize.width / 2}
             />
@@ -58,7 +51,7 @@ const SpaceProductView = () => {
           <ProductThumbnailList
             itemList={productData.productList}
             selectedItem={selectedItem}
-            handleSelectItem={handleSelectItem}
+            setSelectedItem={setSelectedItem}
           />
         </>
       )}

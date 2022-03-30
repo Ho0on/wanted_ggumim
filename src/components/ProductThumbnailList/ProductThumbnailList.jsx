@@ -3,7 +3,7 @@ import React, { useRef, useState } from 'react';
 import ThumbnailItem from './ThumbnailItem';
 import * as S from './ProductThumbnailList.style';
 
-const ProductThumbnailList = ({ itemList, selectedItem, handleSelectItem }) => {
+const ProductThumbnailList = ({ itemList, selectedItem, setSelectedItem }) => {
   const listWrap = useRef();
   const [isDrag, setIsDrag] = useState(false);
   const [startX, setStartX] = useState();
@@ -35,7 +35,7 @@ const ProductThumbnailList = ({ itemList, selectedItem, handleSelectItem }) => {
               key={item.productId}
               item={item}
               isSelected={item.productId === selectedItem}
-              handleSelectItem={handleSelectItem}
+              setSelectedItem={setSelectedItem}
             />
           );
         })}
