@@ -13,11 +13,13 @@ const ProductThumbnailList = ({ itemList, selectedItem, setSelectedItem }) => {
     setIsDrag(true);
     setStartX(e.pageX + listWrap.current.scrollLeft);
   };
+
   const onDragEnd = () => {
     setIsDrag(false);
   };
+
   const onDragMove = e => {
-    isDrag && (listWrap.current.scrollLeft = startX - e.pageX);
+    listWrap.current.scrollLeft = startX - e.pageX;
   };
 
   return (
@@ -25,8 +27,8 @@ const ProductThumbnailList = ({ itemList, selectedItem, setSelectedItem }) => {
       ref={listWrap}
       onMouseDown={onDragStart}
       onMouseUp={onDragEnd}
-      onMouseMove={onDragMove}
       onMouseLeave={onDragEnd}
+      onMouseMove={isDrag ? onDragMove : null}
     >
       <S.ThumbnailList>
         {itemList.map(item => {

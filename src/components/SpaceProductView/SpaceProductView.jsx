@@ -22,7 +22,7 @@ const SpaceProductView = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios(API_ADDRESS);
+      const result = await axios.get(API_ADDRESS);
       setProductData(result.data);
       imageSizeLoad();
     };
@@ -42,8 +42,8 @@ const SpaceProductView = () => {
             <ProductToolTip
               key={item.productId}
               item={item}
-              isSelected={item.productId === selectedItem}
               setSelectedItem={setSelectedItem}
+              isSelected={item.productId === selectedItem}
               onTop={item.pointX * 1.6 > imageSize.height / 2}
               onRight={item.pointY * 1.65 > imageSize.width / 2}
             />
