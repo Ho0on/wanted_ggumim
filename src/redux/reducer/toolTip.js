@@ -1,6 +1,6 @@
 import { SELECT_ITEM } from '../actions/types';
 
-const initialState = 0;
+const initialState = null;
 
 const reducer = (previousState = initialState, action) => {
   if (action.type === SELECT_ITEM) {

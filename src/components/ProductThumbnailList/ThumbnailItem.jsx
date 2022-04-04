@@ -1,10 +1,14 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { selectItem } from '../../redux/actions/toolTip';
 
 import * as S from './ThumbnailItem.style';
 
-const ThumbnailItem = ({ item, isSelected, setSelectedItem }) => {
+const ThumbnailItem = ({ item, isSelected }) => {
+  const dispatch = useDispatch();
+
   const handleToggleItem = () => {
-    setSelectedItem(isSelected ? null : item.productId);
+    dispatch(selectItem(isSelected ? null : item.productId));
   };
 
   return (

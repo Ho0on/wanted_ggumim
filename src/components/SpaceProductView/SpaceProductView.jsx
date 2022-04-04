@@ -5,11 +5,15 @@ import ProductThumbnailList from '../ProductThumbnailList/ProductThumbnailList';
 import ProductToolTip from '../ProductToolTip/ProductToolTip';
 import * as S from './SpaceProductView.style';
 import { API_ADDRESS } from '../../constants';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectItem } from '../../redux/actions/toolTip';
 
 const SpaceProductView = () => {
   const [productData, setProductData] = useState();
-  const [selectedItem, setSelectedItem] = useState(null);
   const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
+
+  const dispatch = useDispatch();
+  const selectedItem = useSelector(state => state.toolTip);
 
   const imageRef = useRef();
 
@@ -35,14 +39,13 @@ const SpaceProductView = () => {
         <>
           <S.SpaceImg
             src={productData.imageUrl}
-            onClick={() => setSelectedItem(null)}
+            onClick={() => dispatch(selectItem(null))}
             ref={imageRef}
           />
           {productData.productList.map(item => (
             <ProductToolTip
               key={item.productId}
               item={item}
-              setSelectedItem={setSelectedItem}
               isSelected={item.productId === selectedItem}
               onTop={item.pointX * 1.6 > imageSize.height / 2}
               onRight={item.pointY * 1.65 > imageSize.width / 2}
@@ -51,7 +54,6 @@ const SpaceProductView = () => {
           <ProductThumbnailList
             itemList={productData.productList}
             selectedItem={selectedItem}
-            setSelectedItem={setSelectedItem}
           />
         </>
       )}

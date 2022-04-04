@@ -1,19 +1,16 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { ARROW_ICON, CLOSE_ICON, SEARCH_ICON } from '../../constants';
+import { selectItem } from '../../redux/actions/toolTip';
 
 import * as S from './ProductToolTip.style';
 
-const ProductToolTip = ({
-  item,
-  isSelected,
-  setSelectedItem,
-  onTop,
-  onRight,
-}) => {
+const ProductToolTip = ({ item, isSelected, onTop, onRight }) => {
   const isOutside = item.outside;
+  const dispatch = useDispatch();
 
   const handleToggleToolTip = () => {
-    setSelectedItem(isSelected ? null : item.productId);
+    dispatch(selectItem(isSelected ? null : item.productId));
   };
 
   return (
