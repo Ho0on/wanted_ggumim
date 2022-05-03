@@ -6,33 +6,40 @@ import { selectItem } from '../../redux/actions/toolTip';
 import * as S from './ProductToolTip.style';
 
 const ProductToolTip = ({ item, isSelected, onTop, onRight }) => {
-  const isOutside = item.outside;
+  const {
+    outside,
+    productId,
+    pointX,
+    pointY,
+    imageUrl,
+    productName,
+    discountRate,
+    priceDiscount,
+  } = item;
   const dispatch = useDispatch();
 
   const handleToggleToolTip = () => {
-    dispatch(selectItem(isSelected ? null : item.productId));
+    dispatch(selectItem(isSelected ? null : productId));
   };
 
   return (
-    <S.TagIcon pointX={item.pointX} pointY={item.pointY}>
+    <S.TagIcon pointX={pointX} pointY={pointY}>
       <S.SearchIcon
         src={isSelected ? CLOSE_ICON : SEARCH_ICON}
         onClick={handleToggleToolTip}
       />
       {isSelected && (
         <S.ToolTip onTop={onTop} onRight={onRight}>
-          <S.ToolTipImg src={item.imageUrl} />
+          <S.ToolTipImg src={imageUrl} />
           <S.ToolTipDesc>
-            <S.DescTitle>{item.productName}</S.DescTitle>
+            <S.DescTitle>{productName}</S.DescTitle>
             <S.DescPrice>
-              {isOutside ? (
+              {outside ? (
                 <S.PriceLabel>예상가</S.PriceLabel>
               ) : (
-                <S.PriceDiscountLabel>
-                  {item.discountRate}%
-                </S.PriceDiscountLabel>
+                <S.PriceDiscountLabel>{discountRate}%</S.PriceDiscountLabel>
               )}
-              <S.Price>{item.priceDiscount.toLocaleString()}</S.Price>
+              <S.Price>{priceDiscount.toLocaleString()}</S.Price>
             </S.DescPrice>
           </S.ToolTipDesc>
           <S.ToolTipArrow>

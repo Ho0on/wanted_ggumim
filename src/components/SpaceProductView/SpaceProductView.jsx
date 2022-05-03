@@ -47,10 +47,7 @@ const SpaceProductView = () => {
               onRight={item.pointY * 1.65 > imageSize.width / 2}
             />
           ))}
-          <ProductThumbnailList
-            itemList={productData.productList}
-            selectedItem={selectedItem}
-          />
+          <ProductThumbnailList itemList={productData.productList} />
         </>
       )}
     </S.SpaceViewContainer>
