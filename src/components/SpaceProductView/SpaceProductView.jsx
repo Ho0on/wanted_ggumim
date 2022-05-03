@@ -17,18 +17,14 @@ const SpaceProductView = () => {
 
   const imageRef = useRef();
 
-  const imageSizeLoad = () => {
-    setImageSize({
-      width: imageRef.current.offsetWidth,
-      height: imageRef.current.offsetHeight,
-    });
-  };
-
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios.get(API_ADDRESS);
       setProductData(result.data);
-      imageSizeLoad();
+      setImageSize({
+        width: imageRef.current.offsetWidth,
+        height: imageRef.current.offsetHeight,
+      });
     };
     fetchData();
   }, []);
